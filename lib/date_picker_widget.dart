@@ -268,6 +268,7 @@ class DatePickerController {
     assert(_datePickerState != null,
     'DatePickerController is not attached to any DatePicker View.');
 
+// better option to only select as i don't need animation for my case, and use the animate fuction for animation.    
 //     _datePickerState!._controller.animateTo(_calculateDateOffset(date),
 //         duration: duration, curve: curve);
 
