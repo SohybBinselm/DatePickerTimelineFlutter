@@ -268,8 +268,8 @@ class DatePickerController {
     assert(_datePickerState != null,
     'DatePickerController is not attached to any DatePicker View.');
 
-    _datePickerState!._controller.animateTo(_calculateDateOffset(date),
-        duration: duration, curve: curve);
+//     _datePickerState!._controller.animateTo(_calculateDateOffset(date),
+//         duration: duration, curve: curve);
 
     if (date.compareTo(_datePickerState!.widget.startDate) >= 0 &&
     date.compareTo(_datePickerState!.widget.startDate.add(
