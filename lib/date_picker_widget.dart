@@ -272,7 +272,10 @@ class DatePickerController {
 //     _datePickerState!._controller.animateTo(_calculateDateOffset(date),
 //         duration: duration, curve: curve);
 
-    if (date.compareTo(_datePickerState!.widget.startDate) >= 0 &&
+    if(date == null) {
+    _datePickerState!._currentDate = null;
+    }
+    else if (date.compareTo(_datePickerState!.widget.startDate) >= 0 &&
     date.compareTo(_datePickerState!.widget.startDate.add(
         Duration(days: _datePickerState!.widget.daysCount))) <= 0) {
       // date is in the range
