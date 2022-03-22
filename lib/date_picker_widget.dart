@@ -26,7 +26,7 @@ class DatePicker extends StatefulWidget {
 
   /// Background color for the selector
   final Color selectionColor;
-
+  final Color selectionColorBorder;
   /// Text Color for the deactivated dates
   final Color deactivatedColor;
 
@@ -71,6 +71,7 @@ class DatePicker extends StatefulWidget {
     this.dateTextStyle = defaultDateTextStyle,
     this.selectedTextColor = Colors.white,
     this.selectionColor = AppColors.defaultSelectionColor,
+        this.selectionColorBorder = const Color(0x1F000000),
     this.deactivatedColor = AppColors.defaultDeactivatedColor,
     this.initialSelectedDate,
     this.activeDates,
@@ -111,12 +112,23 @@ class _DatePickerState extends State<DatePicker> {
       widget.controller!.setDatePickerState(this);
     }
 
-    this.selectedDateStyle =
-      widget.dateTextStyle.copyWith(color: widget.selectedTextColor);
+    this.selectedDateStyle =TextStyle(
+      color: Color(0xDE000000),
+      letterSpacing: .14,
+      fontSize: 16,
+      fontFamily: "Roboto",
+      fontWeight: FontWeight.w600,
+    );
     this.selectedMonthStyle =
       widget.monthTextStyle.copyWith(color: widget.selectedTextColor);
-    this.selectedDayStyle =
-        widget.dayTextStyle.copyWith(color: widget.selectedTextColor);
+    this.selectedDayStyle =TextStyle(
+      color: Color(0xDE000000),
+      letterSpacing: .4,
+      fontSize: 12,
+      fontFamily: "Roboto",
+      fontWeight: FontWeight.w400,
+    );
+      //  widget.dayTextStyle.copyWith(color: widget.selectedTextColor);
 
     this.deactivatedDateStyle =
         widget.dateTextStyle.copyWith(color: widget.deactivatedColor);
@@ -194,6 +206,7 @@ class _DatePickerState extends State<DatePicker> {
             locale: widget.locale,
             selectionColor:
                 isSelected ? widget.selectionColor : Colors.transparent,
+            selectionColorBorder:   isSelected ? widget.selectionColorBorder : Color(0x1F000000),
             onDateSelected: (selectedDate) {
               // Don't notify listener if date is deactivated
               if (isDeactivated) return;
@@ -250,7 +263,7 @@ class DatePickerController {
         curve: curve);
   }
 
-  /// This function will animate to any date that is passed as an argument
+  /// This function will animate to any date that is passed as a parameter
   /// In case a date is out of range nothing will happen
   void animateToDate(DateTime date,
       {duration = const Duration(milliseconds: 500), curve = Curves.linear}) {
@@ -260,7 +273,7 @@ class DatePickerController {
     _datePickerState!._controller.animateTo(_calculateDateOffset(date),
         duration: duration, curve: curve);
   }
-
+  
   /// This function will animate to any date that is passed as an argument
   /// this will also set that date as the current selected date
   void setDateAndAnimate(DateTime date,
