@@ -14,6 +14,7 @@ class DateWidget extends StatelessWidget {
   final DateTime date;
   final TextStyle? monthTextStyle, dayTextStyle, dateTextStyle;
   final Color selectionColor;
+  final Color selectionColorBorder;
   final DateSelectionCallback? onDateSelected;
   final String? locale;
 
@@ -23,6 +24,7 @@ class DateWidget extends StatelessWidget {
     required this.dayTextStyle,
     required this.dateTextStyle,
     required this.selectionColor,
+    required this.selectionColorBorder,
     this.width,
     this.onDateSelected,
     this.locale,
@@ -35,21 +37,23 @@ class DateWidget extends StatelessWidget {
         width: width,
         margin: EdgeInsets.all(3.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          border: Border.all(color: selectionColorBorder),
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
           color: selectionColor,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.symmetric(horizontal: 4,vertical: 8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
-                  style: monthTextStyle),
+              Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
+                  style: dayTextStyle),
+              // Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
+              //     style: monthTextStyle),
               Text(date.day.toString(), // Date
                   style: dateTextStyle),
-              Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
-                  style: dayTextStyle)
+
             ],
           ),
         ),
