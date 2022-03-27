@@ -59,12 +59,14 @@ class DatePicker extends StatefulWidget {
 
   /// Locale for the calendar default: en_us
   final String locale;
+  final scrollViewWidth;
 
   DatePicker(
     this.startDate, {
     Key? key,
     this.width = 60,
     this.height = 80,
+    this.scrollViewWidth,
     this.controller,
     this.monthTextStyle = defaultMonthTextStyle,
     this.dayTextStyle = defaultDayTextStyle,
@@ -299,12 +301,13 @@ class DatePickerController {
   /// Calculate the number of pixels that needs to be scrolled to go to the
   /// date provided in the argument
   double _calculateDateOffset(DateTime date) {
+    double offsetReminderFactor = (scrollViewWidth / (_datePickerState!.widget.width + 6));
     final startDate = new DateTime(
         _datePickerState!.widget.startDate.year,
         _datePickerState!.widget.startDate.month,
         _datePickerState!.widget.startDate.day);
 
     int offset = date.difference(startDate).inDays;
-    return (offset * _datePickerState!.widget.width) + ((offset ~/ 7) * 6) - ((offset % 7) * _datePickerState!.widget.width);
+    return (offset * _datePickerState!.widget.width) + ((offset ~/ offsetReminderFactor) * 6) - ((offset % offsetReminderFactor) * _datePickerState!.widget.width);
   }
 }
