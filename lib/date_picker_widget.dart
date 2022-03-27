@@ -305,6 +305,6 @@ class DatePickerController {
         _datePickerState!.widget.startDate.day);
 
     int offset = date.difference(startDate).inDays;
-    return (offset * _datePickerState!.widget.width) - ((offset % 7) * _datePickerState!.widget.width);
+    return (offset * _datePickerState!.widget.width) + ((offset ~/ 7) * 6) - ((offset % 7) * _datePickerState!.widget.width);
   }
 }
