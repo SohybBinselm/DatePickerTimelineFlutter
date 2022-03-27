@@ -296,7 +296,7 @@ class DatePickerController {
     }
   }
   double getScrollControllerOffset() {
-    return _controller.offset;
+    return _datePickerState!._controller.offset;
   }
 
   /// Calculate the number of pixels that needs to be scrolled to go to the
