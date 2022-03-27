@@ -298,6 +298,15 @@ class DatePickerController {
   double getScrollControllerOffset() {
     return _datePickerState!._controller.offset;
   }
+  
+  void jumpToOffset(double offset) {
+    assert(_datePickerState != null,
+        'DatePickerController is not attached to any DatePicker View.');
+
+    // jump to the target offset
+    _datePickerState!._controller
+        .jumpTo(offset);
+  }
 
   /// Calculate the number of pixels that needs to be scrolled to go to the
   /// date provided in the argument
