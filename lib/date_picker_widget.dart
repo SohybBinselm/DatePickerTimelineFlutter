@@ -301,7 +301,7 @@ class DatePickerController {
   /// Calculate the number of pixels that needs to be scrolled to go to the
   /// date provided in the argument
   double _calculateDateOffset(DateTime date) {
-    double offsetReminderFactor = (scrollViewWidth / (_datePickerState!.widget.width + 6));
+    double offsetReminderFactor = (_datePickerState!.widget.scrollViewWidth / (_datePickerState!.widget.width + 6));
     final startDate = new DateTime(
         _datePickerState!.widget.startDate.year,
         _datePickerState!.widget.startDate.month,
